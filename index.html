@@ -302,7 +302,7 @@
       <div class="auth-field"><label>Choose a Password</label><input class="field-input" style="width:100%" id="ms-pass" type="password"></div>
       <div class="auth-field"><label>Confirm Password</label><input class="field-input" style="width:100%" id="ms-pass2" type="password"></div>
       <div class="auth-field"><label>Email (for password recovery)</label><input class="field-input" style="width:100%" id="ms-email" type="email"></div>
-      <div class="auth-field"><label>Phone (for password recovery, e.g. +923001234567)</label><input class="field-input" style="width:100%" id="ms-phone"></div>
+      <div class="auth-field"><label>Phone (optional contact info)</label><input class="field-input" style="width:100%" id="ms-phone"></div>
       <div class="auth-error" id="ms-error"></div>
       <button class="btn btn-primary btn-block" onclick="managerRegister()">Create Account &amp; Log In</button>
     </div>
@@ -317,9 +317,7 @@
       <h2 class="display" style="margin:0 0 4px;">Reset Password</h2>
       <p style="font-size:12.5px;color:var(--ink-soft);margin:0 0 16px;" id="forgotIntro">Enter your details and we'll send you a verification code.</p>
       <div class="auth-field" id="forgotIdWrap"><label id="forgotIdLabel">Username</label><input class="field-input" style="width:100%" id="fg-identifier"></div>
-      <div class="auth-field"><label>Send code by</label>
-        <select class="field-input" style="width:100%" id="fg-channel"><option value="both">Email and SMS</option><option value="email">Email only</option><option value="sms">SMS only</option></select>
-      </div>
+      <input type="hidden" id="fg-channel" value="email">
       <div class="auth-error" id="fg-error"></div>
       <button class="btn btn-primary btn-block" onclick="requestForgotCode()">Send Code</button>
     </div>
@@ -538,7 +536,7 @@
             <div><label class="lbl">Name</label><input class="field-input" id="setMgrName" style="width:100%"></div>
             <div><label class="lbl">Username</label><input class="field-input" id="setMgrUser" style="width:100%"></div>
             <div><label class="lbl">Email (for password recovery)</label><input class="field-input" id="setMgrEmail" style="width:100%" type="email"></div>
-            <div><label class="lbl">Phone (for password recovery)</label><input class="field-input" id="setMgrPhone" style="width:100%"></div>
+            <div><label class="lbl">Phone (optional contact info)</label><input class="field-input" id="setMgrPhone" style="width:100%"></div>
             <div><label class="lbl">New Password (leave blank to keep current)</label><input class="field-input" id="setMgrPass" style="width:100%" type="password"></div>
             <div><label class="lbl">Current Password *</label><input class="field-input" id="setMgrCurrentPass" style="width:100%" type="password" placeholder="Required to save changes"></div>
           </div>
@@ -845,8 +843,8 @@ function openForgot(kind){
   forgotKind = kind;
   closeModal('memberAuthModal'); closeModal('managerAuthModal');
   document.getElementById('forgotIntro').textContent = kind==='manager'
-    ? "Enter your manager username and we'll send a verification code to the email/phone on file."
-    : "Enter your CNIC and we'll send a verification code to the email/phone your manager has on file for you.";
+    ? "Enter your manager username and we'll email a verification code to the address on file."
+    : "Enter your CNIC and we'll email a verification code to the address your manager has on file for you.";
   document.getElementById('forgotIdLabel').textContent = kind==='manager' ? 'Username' : 'CNIC';
   document.getElementById('fg-identifier').value='';
   document.getElementById('fg-code').value='';
