@@ -1,0 +1,9 @@
+{
+  "name": "ghizer-union-welfare",
+  "version": "2.0.0",
+  "private": true,
+  "description": "Ghizer Union Welfare Organization — Member Portal (with real database, auth, and forgot-password support)",
+  "dependencies": {
+    "@vercel/postgres": "^0.10.0"
+  }
+}
